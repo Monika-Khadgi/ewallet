@@ -61,7 +61,7 @@
           <div class="box1">
             <div id="valid-p">
               <label>VAILD THUR</label> <br />
-              <input class="validThur" />
+              <input type="text" v-model="validThur" id="validThur" class="validThur" />
             </div>
             <div id="ccv-p">
               <label>CCV</label> <br />
@@ -86,7 +86,8 @@ export default {
   data() {
     return {
       cardNumber: "",
-      cardHolderName: ""
+      cardHolderName: "",
+      validThur: ""
     };
   },
   methods: {
