@@ -8,10 +8,7 @@
       <div class="card-item__side -front">
         <div class="card-item__wrapper">
           <div class="card-item__top">
-            <img
-              src="./assets/img/chip-dark.svg"
-              class="card-item__chip"
-            />
+            <img src="./assets/img/chip-dark.svg" class="card-item__chip" />
             <div class="card-item__type">
               <img
                 src="./assets/img/vendor-bitcoin.svg"
@@ -20,35 +17,19 @@
               />
             </div>
           </div>
-          <label for="cardNumber" class="card-item__number"
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem -active"></div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem -active"></div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem -active"></div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span
-            ><span><div class="card-item__numberItem">#</div></span></label
-          >
+          <label for="cardNumber" class="card-item__number">
+            <span
+              ><div class="card-item__numberItem">{{ cardNumber }}</div></span
+            >
+          </label>
           <div class="card-item__content">
             <label for="cardName" class="card-item__info"
-              ><div class="card-item__holder">Card Holder</div>
-              <div class="card-item__name">Full Name</div></label
+              ><div class="card-item__holder">Card Holder's Name</div>
+              <div class="card-item__name"> {{ cardHolderName }} </div></label
             >
             <div class="card-item__date">
               <label for="cardMonth" class="card-item__dateTitle"
-                >Expires</label
+                >Valid Thru</label
               >
               <label for="cardMonth" class="card-item__dateItem"
                 ><span>MM</span></label
@@ -63,6 +44,38 @@
       </div>
     </div>
 
+    <div id="credit-card-form">
+      <form>
+        <div class="innerBox">
+          <label for="cardNumber" ref="cardNumber">CARD NUMBER</label>
+          <input
+            type="text"
+            id="cardNumber"
+            v-model="cardNumber"
+            v-on:keydown="replaceHash"
+            autocomplete="off"
+            class="card-input__input"
+          />
+          <label>CARD HOLDER'S NAME</label>
+          <input class="name" type="text" v-model="cardHolderName" id="cardHolderName"/>
+          <div class="box1">
+            <div id="valid-p">
+              <label>VAILD THUR</label> <br />
+              <input class="validThur" />
+            </div>
+            <div id="ccv-p">
+              <label>CCV</label> <br />
+              <input class="ccv" />
+            </div>
+          </div>
+          <label>VENDOR</label>
+          <input class="vendor" />
+        </div>
+
+        <button class="addCard-btn">Add Card</button>
+      </form>
+    </div>
+
     <router-view />
   </div>
 </template>
@@ -70,6 +83,18 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      cardNumber: "",
+      cardHolderName: ""
+    };
+  },
+  methods: {
+    replaceHash(e) {
+      
+
+    },
+  },
 };
 </script>
 
@@ -81,7 +106,6 @@ export default {
 }
 #activeCard {
   display: flex;
-
   height: 250px;
   width: 400px;
   color: red;
@@ -140,14 +164,14 @@ export default {
 }
 
 .card-item__chip {
-    width: 40px;
+  width: 40px;
 }
 
 .card-item__typeImg {
-    max-width: 100%;
-    object-fit: contain;
-    max-height: 100%;
-    object-position: top right;
+  max-width: 100%;
+  object-fit: contain;
+  max-height: 100%;
+  object-position: top right;
 }
 
 .card-item__number {
@@ -162,8 +186,8 @@ export default {
 }
 
 .card-item__numberItem {
-    width: 16px;
-    display: inline-block;
+  width: 410px;
+  display: inline-block;
 }
 
 .card-item__content {
@@ -182,13 +206,29 @@ export default {
   cursor: pointer;
 }
 
+.card-item__holder {
+    opacity: 0.7;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.card-item__name {
+    font-size: 18px;
+    line-height: 1;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+}
+
 .card-item__date {
   flex-wrap: wrap;
   font-size: 18px;
   margin-left: auto;
   padding: 10px;
   display: inline-flex;
-  width: 80px;
+  width: 100px;
   white-space: nowrap;
   flex-shrink: 0;
   cursor: pointer;
@@ -203,5 +243,44 @@ export default {
 
 .card-item__dateItem {
   position: relative;
+}
+
+.innerBox {
+  color: black;
+  display: flex;
+
+  flex-direction: column;
+}
+.box1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+label {
+  font-size: 15px;
+}
+
+#ccv-p {
+  padding-left: 62px;
+}
+.validThur {
+  width: 120%;
+}
+.ccv {
+  width: 120%;
+}
+
+input {
+  width: 400px;
+  height: 50px;
+  border-radius: 10px;
+}
+.addCard-btn {
+  width: 400px;
+  height: 50px;
+  color: white;
+  background: black;
+  margin-top: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 </style>

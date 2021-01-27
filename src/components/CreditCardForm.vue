@@ -1,14 +1,14 @@
 <template>
-  <div class="login-form">
+  <div id="credit-card-form">
     <form>
       <div class="innerBox">
         <label>CARD NUMBER</label>
-        <input class="cardNumber" />
+        <input v-model="cardNumber" id="cardNumber" />
         <label>CARD HOLDER'S NAME</label>
         <input class="name" />
         <div class="box1">
           <div id="valid-p">
-            <label>VAILD THUR</label> <br>
+            <label>VAILD THUR</label> <br />
             <input class="validThur" />
           </div>
           <div id="ccv-p">
@@ -25,38 +25,40 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  name: "LoginForm",
   data() {
-    return {};
+    return {
+      cardNumber: null
+    };
   },
 };
 </script>
 
 <style>
-
-
 .innerBox {
   color: black;
   display: flex;
-  
+
   flex-direction: column;
 }
 .box1 {
   display: flex;
   flex-wrap: wrap;
 }
-label{
+label {
   font-size: 15px;
 }
 
-#ccv-p{
+#ccv-p {
   padding-left: 62px;
 }
-.validThur{width: 120%;}
-.ccv{width: 120%;}
+.validThur {
+  width: 120%;
+}
+.ccv {
+  width: 120%;
+}
 
 input {
   width: 400px;
@@ -70,7 +72,6 @@ button {
   background: black;
   margin-top: 15px;
   border-radius: 10px;
-  
 }
 </style>
 
