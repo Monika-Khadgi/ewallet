@@ -4,12 +4,6 @@
       <h1>Add New Bank Card</h1>
       <h4>New Card</h4>
     </div>
-    <!-- 
-    <div id="activeCard">
-        <div class="chipImg">
-          <img src="./assets/img/chip-dark.svg">
-        </div>
-    </div> -->
     <div class="card-item">
       <div class="card-item__side -front">
         <div class="card-item__wrapper">
